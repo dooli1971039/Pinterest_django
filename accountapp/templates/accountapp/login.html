@@ -1,5 +1,7 @@
+<!--'base.html'을 extends 했으므로 header,footer는 바뀌지 않고 content부분만 바뀐다-->
 {% extends 'base.html'%}
 {% load bootstrap4 %}
+
 {% block content %}
 
     <div style="text-align: center; max-width: 500px; margin: 4rem auto">
@@ -7,6 +9,8 @@
             <h4>Login</h4>
         </div>
         <div>
+<!--            action에 아무것도 없으면, 지금 페이지 주소 그대로 다시 요청을 보낸다는 뜻
+                {% url 'accountapp:login' %} 이렇게 썼어도 정상적으로 작동한다.-->
             <form action="" method="post">
                 {% csrf_token %}
 <!--                {{ form }}-->

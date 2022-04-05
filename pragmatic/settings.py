@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
+    'bootstrap4',  # 이거 추가해준다.
     'accountapp',  # 이것을 추가해 주어야 한다.
 ]
 
@@ -140,6 +140,7 @@ STATICFILES_DIRS = [
     BASE_DIR/"static",
 ]
 
+#그냥 accounts/login으로 들어가서 로그인하면 accounts/profile로 넘어가니까 redirect 설정을 바꿔줌
 LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 

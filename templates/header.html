@@ -7,6 +7,13 @@
         <span>nav1</span>
         <span>nav2</span>
         <span>nav3</span>
+
+<!--    로그인 :user가 아니면 =>login으로/ user이면 logout으로-->
+<!--    login하고 나서 그다음에 연결되어야 하는 경로를 next로 적어준다.
+        next={{request.path}}가 없으면 accounts/profile이라는 페이지로 넘어가더라
+        next 값을 사용할때 {{ request.path }} 를 사용하는 건, 홈페이지 상단의 login 버튼을 눌렀을때,
+        그 버튼을 누를때 보고 있던 페이지의 정보를 넘겨주기 위함입니다. 해당 페이지의 정보를 넘겨줌으로써,
+        로그인 이후 로그인 버튼을 누른 페이지로 다시 되돌아갈 수 있도록 연결해주는 역할을 합니다. -->
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
             <span>login</span>
@@ -16,6 +23,7 @@
             <span>logout</span>
         </a>
         {% endif %}
+
     </div>
 
 </div>
