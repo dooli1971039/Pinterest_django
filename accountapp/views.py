@@ -4,8 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 # Create your views here.
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
+from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
 
 def hello_world(request):
@@ -33,9 +34,17 @@ class AccountCreateView(CreateView):  # CreateView를 상속받음
     template_name = "accountapp/create.html"  # 템플릿을 지정해주어야 한다. (회원가입을 할 때 보는 화면)
     # create.html을 새로 생성하면 당연히 urls.py에도 연결을 해주어야 한다.
 
+
 # CreateView는 뭔가 만들어야 하니까 form이나 성공했을때 경로 등 정해줘야 하지만, DetailView(reading)은 더 간단하다
 class AccountDetailView(DetailView):
     model = User  # 어떤 모델을 사용할 것인지
     context_object_name = "target_user" #특정 pk유저 정보를 확인하면 그 유저를 보여줘야 한다.
                                         #연예인 인스타 들어갔는데 내 정보가 뜨는게 아니라 그 연예인 정보가 떠야함
     template_name = 'accountapp/detail.html'  # 어떻게 시각화할 것인지
+
+
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = "accountapp/update.html"
