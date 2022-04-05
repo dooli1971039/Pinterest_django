@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView
+from accountapp.views import hello_world, AccountCreateView, AccountDetailView
 
 app_name="accountapp"
 
@@ -16,4 +16,8 @@ urlpatterns = [
 
     #class based view에서는 .as_view()를 붙어야 한다.
     path("create/", AccountCreateView.as_view(), name='create'),
+
+    #특정유저의 정보를 받으려고 한다. => 고유번호를 받아야 한다
+    #detail/<int:pk>  pk라는 이름의 int정보를 받겠다
+    path("detail/<int:pk>", AccountDetailView.as_view(), name='detail'),
 ]

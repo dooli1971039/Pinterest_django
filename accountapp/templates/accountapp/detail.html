@@ -1,0 +1,19 @@
+<!--'base.html'을 extends 했으므로 header,footer는 바뀌지 않고 content부분만 바뀐다-->
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+        <div>
+            <p>
+                {{ target_user.date_joined }}
+            </p>
+            <h2 style="font-family:NanumSquareB">
+                {{ target_user.username }}
+            </h2>
+        </div>
+    </div>
+
+
+{% endblock %}
