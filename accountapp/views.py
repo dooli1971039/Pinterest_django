@@ -1,22 +1,26 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 # Create your views here.
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
 
+has_ownership = [account_ownership_required, login_required]
+
+@login_required
 def hello_world(request):
     if request.method == "POST":
         temp = request.POST.get('hello_world_input')
-
         new_hello_world = HelloWorld()
         new_hello_world.text = temp
         new_hello_world.save()
-
         # POST를 1번 완료한 후에는 GET으로 돌아가게 하자
         # 아래 코드의 뜻은 'accountapp 내부에 있는 hello_world로 재접속하라'라는 의미
         return HttpResponseRedirect(reverse('accountapp:hello_world'))
@@ -25,6 +29,7 @@ def hello_world(request):
     else:
         hello_world_list = HelloWorld.objects.all()  # DB에 저장된 list 모두 긁어오기
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+
 
 class AccountCreateView(CreateView):  # CreateView를 상속받음
     model = User  # 어떤 모델을 사용할 것이다. #User - 장고에서 기본 제공해주는 모델
@@ -43,6 +48,8 @@ class AccountDetailView(DetailView):
     template_name = 'accountapp/detail.html'  # 어떻게 시각화할 것인지
 
 
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User
     context_object_name = "target_user"
@@ -50,6 +57,8 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = "accountapp/update.html"
 
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = "target_user"
