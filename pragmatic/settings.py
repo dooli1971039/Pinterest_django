@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'bootstrap4',  # 이거 추가해준다.
     'accountapp',  # 이것을 추가해 주어야 한다.
     'profileapp',
+    'articleapp',
 ]
 
 MIDDLEWARE = [
