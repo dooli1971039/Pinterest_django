@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'accountapp',  # 이것을 추가해 주어야 한다.
     'profileapp',
     'articleapp',
+    'commentapp',
 ]
 
 MIDDLEWARE = [
