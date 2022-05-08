@@ -2,23 +2,26 @@
 
 <!--    현재 페이지에서 이전 페이지가 있는지 없는지-->
     {% if page_obj.has_previous %}
-    <a href="{% url 'articleapp:list' %}?page={{ page_obj.previous_page_number }}"
+    <a href="?page={{ page_obj.previous_page_number }}"
        class="btn btn-secondary rounded-pill">
         {{ page_obj.previous_page_number }}
     </a>
     {% endif %}
 
 
-    <a href="{% url 'articleapp:list' %}?page={{ page_obj.number }}"
+    <a href="?page={{ page_obj.number }}"
        class="btn btn-secondary rounded-pill active">
         {{ page_obj.number }}
     </a>
 
 <!--    현재 페이지에서 다음 페이지가 있는지 없는지-->
     {% if page_obj.has_next %}
-    <a href="{% url 'articleapp:list' %}?page={{ page_obj.next_page_number }}"
+    <a href="?page={{ page_obj.next_page_number }}"
        class="btn btn-secondary rounded-pill">
         {{ page_obj.next_page_number }}
     </a>
     {% endif %}
 </div>
+
+<!--<a href="{% url 'articleapp:list' %}?page={{ page_obj.next_page_number }}"
+이런식으로 쓰지 않고 href="?page={{ page_obj.next_page_number }}" 이렇게 하면, articleapp이 아니더라도 어디에서도 쓸 수 있다.-->

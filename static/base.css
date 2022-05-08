@@ -21,3 +21,22 @@
         font-size: 13px;
     }
 }
+
+a {
+    color: black;
+}
+
+/* hover는 요소에 마우스를 올렸을 때 어떤 행동을 할껀지를 설정해주는 것*/
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.prgmatic_header_nav {
+    margin: 0 0.5rem;
+}
+
+
+.pragmatic_header_navbar {
+    margin: 1rem 0;
+}
