@@ -1,12 +1,11 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
+from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 app_name = "accountapp"
 
 urlpatterns = [
-    path("hello_world/", hello_world, name='hello_world'),
 
     # create같은 경우는 특정 View 상속 받아서, 파라미터 설정하고 그랬었는데
     #login,logout은 거창한 것이 필요 없어서 이런식으로 간단하게 해도 된다.

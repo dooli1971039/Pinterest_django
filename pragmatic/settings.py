@@ -147,7 +147,7 @@ STATICFILES_DIRS = [
 ]
 
 #그냥 accounts/login으로 들어가서 로그인하면 accounts/profile로 넘어가니까 redirect 설정을 바꿔줌
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 # Default primary key field type
